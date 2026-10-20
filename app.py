@@ -884,6 +884,8 @@ elif page == "Upload & Analyze Logs":
                                     str(input_path),
                                     "--llm",
                                     llm_choice,
+                                    "--report-top-n",
+                                     "1",
                                     "--export-dir",
                                     str(export_dir),
                                 ],
