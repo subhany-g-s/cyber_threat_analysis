@@ -872,25 +872,63 @@ elif page == "Upload & Analyze Logs":
                     input_path = input_dir / f"{safe_name}_{run_stamp}.json"
                     input_path.write_text(json.dumps(events, ensure_ascii=False, indent=2), encoding="utf-8")
                     st.write(f"Submitting **{len(events):,} records** from **{len(manifest)} file(s)** to the backend.")
-                    with st.spinner("Backend is running threat analysis, GraphRAG retrieval, and report generation..."):
-                        result = subprocess.run(
-                            [sys.executable, str(pipeline_script), "--input", str(input_path), "--llm", llm_choice, "--export-dir", str(export_dir)],
-                            cwd=str(PROJECT_DIR), capture_output=True, text=True, timeout=3600, env=os.environ.copy()
-                        )
-                    with st.expander("Backend execution log", expanded=result.returncode != 0):
-                        st.code((result.stdout or "")[-12000:] or "(No standard output)")
-                        if result.stderr:
-                            st.text("Standard error")
-                            st.code(result.stderr[-12000:])
-                    if result.returncode != 0:
-                        st.error("Backend pipeline failed. The dashboard will not display results for this run.")
-                    elif not (export_dir / "run_result.json").exists():
-                        st.error("Backend finished but run_result.json was not found in the expected output directory. Verify the backend's export behavior.")
+                    try:
+                        with st.spinner(
+                            "Backend is running threat analysis, GraphRAG retrieval, and report generation..."
+                        ):
+                            result = subprocess.run(
+                                [
+                                    sys.executable,
+                                    str(pipeline_script),
+                                    "--input",
+                                    str(input_path),
+                                    "--llm",
+                                    llm_choice,
+                                    "--export-dir",
+                                    str(export_dir),
+                                ],
+                                cwd=str(PROJECT_DIR),
+                                capture_output=True,
+                                text=True,
+                                timeout=3600,
+                                env=os.environ.copy(),
+                            )
+
+                        # Always display both streams and the process return code.
+                        with st.expander("Backend execution log", expanded=True):
+                            st.write("**Return code:**", result.returncode)
+                            st.write("**Standard output (stdout)**")
+                            st.code(result.stdout[-20000:] if result.stdout else "(Empty)")
+                            st.write("**Standard error (stderr)**")
+                            st.code(result.stderr[-20000:] if result.stderr else "(Empty)")
+
+                    except subprocess.TimeoutExpired as exc:
+                        st.error("Backend analysis exceeded the one-hour timeout.")
+                        if exc.stdout:
+                            st.write("**Partial standard output (stdout)**")
+                            st.code(str(exc.stdout)[-20000:])
+                        if exc.stderr:
+                            st.write("**Partial standard error (stderr)**")
+                            st.code(str(exc.stderr)[-20000:])
                     else:
-                        st.session_state["active_output_dir"] = str(export_dir)
-                        st.session_state["active_upload_manifest"] = manifest
-                        st.success("Analysis complete. Dashboard pages will now display the results from these uploaded logs.")
-                        st.rerun()
+                        if result.returncode != 0:
+                            st.error(
+                                "Backend pipeline failed. Check the execution log above "
+                                "for the actual error."
+                            )
+                        elif not (export_dir / "run_result.json").exists():
+                            st.error(
+                                "Backend finished but run_result.json was not found in the expected "
+                                "output directory. Verify the backend's export behavior."
+                            )
+                        else:
+                            st.session_state["active_output_dir"] = str(export_dir)
+                            st.session_state["active_upload_manifest"] = manifest
+                            st.success(
+                                "Analysis complete. Dashboard pages will now display the results "
+                                "from these uploaded logs."
+                            )
+                            st.rerun()
             except json.JSONDecodeError as exc:
                 st.error(f"Invalid JSON in uploaded file: {exc}")
             except subprocess.TimeoutExpired:
