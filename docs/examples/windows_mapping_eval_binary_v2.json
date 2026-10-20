@@ -1,0 +1,145 @@
+{
+  "examples": [
+    {
+      "id": "pos_001",
+      "category": "positive",
+      "text": "PowerShell executes a command encoded in Base64 and launches additional child processes.",
+      "expected_technique_ids": [
+        "T1059.001"
+      ]
+    },
+    {
+      "id": "pos_002",
+      "category": "positive",
+      "text": "A Windows process launches cmd.exe to execute a command interpreted by the Windows command shell.",
+      "expected_technique_ids": [
+        "T1059.003"
+      ]
+    },
+    {
+      "id": "pos_003",
+      "category": "positive",
+      "text": "A scheduled task is created to execute a program automatically at a later time.",
+      "expected_technique_ids": [
+        "T1053.005"
+      ]
+    },
+    {
+      "id": "pos_004",
+      "category": "positive",
+      "text": "A process reads the Windows LSASS process memory to obtain credential material.",
+      "expected_technique_ids": [
+        "T1003.001"
+      ]
+    },
+    {
+      "id": "pos_005",
+      "category": "positive",
+      "text": "A process attempts to access another process memory and modify its execution.",
+      "expected_technique_ids": [
+        "T1055"
+      ]
+    },
+    {
+      "id": "pos_006",
+      "category": "positive",
+      "text": "A user account is created on a Windows host and added to the local Administrators group without authorization.",
+      "expected_technique_ids": [
+        "T1136.001",
+        "T1098.007"
+      ]
+    },
+    {
+      "id": "pos_007",
+      "category": "positive",
+      "text": "A Windows executable is configured to run automatically when a user logs in by adding a Registry Run key.",
+      "expected_technique_ids": [
+        "T1547.001"
+      ]
+    },
+    {
+      "id": "pos_008",
+      "category": "positive",
+      "text": "A process communicates with an external command-and-control server over HTTP/S to receive instructions and send results.",
+      "expected_technique_ids": [
+        "T1071.001"
+      ]
+    },
+    {
+      "id": "pos_009",
+      "category": "positive",
+      "text": "A process attempts to overwrite raw disk sectors and corrupt the master boot record, preventing the computer from starting.",
+      "expected_technique_ids": [
+        "T1561.002"
+      ]
+    },
+    {
+      "id": "pos_010",
+      "category": "positive",
+      "text": "A process overwrites large portions of a storage device with the intent of making stored data irrecoverable.",
+      "expected_technique_ids": [
+        "T1561.001"
+      ]
+    },
+    {
+      "id": "benign_001",
+      "category": "benign",
+      "text": "Routine scheduled disk defragmentation is performed by the operating system.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_002",
+      "category": "benign",
+      "text": "An administrator uses PowerShell to retrieve operating system version and hostname information during an approved inventory check.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_003",
+      "category": "benign",
+      "text": "Windows Update installs approved security patches and restarts the computer during a maintenance window.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_004",
+      "category": "benign",
+      "text": "An approved backup application reads files and writes backup copies to designated storage.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_005",
+      "category": "benign",
+      "text": "The operating system performs its regular scheduled storage optimization maintenance.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_006",
+      "category": "benign",
+      "text": "An IT administrator creates an approved scheduled task to run a software inventory script.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_007",
+      "category": "benign",
+      "text": "An endpoint security agent scans files and reports detected malware to the management console.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_008",
+      "category": "benign",
+      "text": "A user launches a browser and opens a company-approved internal web application.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_009",
+      "category": "benign",
+      "text": "An approved system maintenance tool checks disk health and reads SMART status information.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign_010",
+      "category": "benign",
+      "text": "A software installer creates its documented application directory and adds a standard uninstall entry.",
+      "expected_technique_ids": []
+    }
+  ]
+}

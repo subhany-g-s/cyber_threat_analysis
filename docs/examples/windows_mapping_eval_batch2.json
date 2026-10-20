@@ -1,0 +1,148 @@
+{
+  "description": "Draft Batch 2 Windows ATT&CK mapping evaluation examples; labels require analyst review.",
+  "examples": [
+    {
+      "id": "pos2_001",
+      "category": "positive",
+      "text": "A process runs whoami and hostname to discover the current security context and computer name.",
+      "expected_technique_ids": [
+        "T1033",
+        "T1082"
+      ]
+    },
+    {
+      "id": "pos2_002",
+      "category": "positive",
+      "text": "A process runs ipconfig and route commands to discover network interface settings and routing information.",
+      "expected_technique_ids": [
+        "T1016"
+      ]
+    },
+    {
+      "id": "pos2_003",
+      "category": "positive",
+      "text": "A process queries installed security products and antivirus status to identify defenses on the host.",
+      "expected_technique_ids": [
+        "T1518.001"
+      ]
+    },
+    {
+      "id": "pos2_004",
+      "category": "positive",
+      "text": "A process enumerates running processes to identify applications and services currently executing.",
+      "expected_technique_ids": [
+        "T1057"
+      ]
+    },
+    {
+      "id": "pos2_005",
+      "category": "positive",
+      "text": "A process lists files and directories in a user's document folder to discover available files.",
+      "expected_technique_ids": [
+        "T1083"
+      ]
+    },
+    {
+      "id": "pos2_006",
+      "category": "positive",
+      "text": "A remote administration utility creates a Windows service on another host and uses it to execute a program.",
+      "expected_technique_ids": [
+        "T1021.002",
+        "T1569.002"
+      ]
+    },
+    {
+      "id": "pos2_007",
+      "category": "positive",
+      "text": "A process uses PowerShell to download a script from an external server and execute the downloaded content.",
+      "expected_technique_ids": [
+        "T1059.001",
+        "T1105"
+      ]
+    },
+    {
+      "id": "pos2_008",
+      "category": "positive",
+      "text": "A process exports browser-stored authentication cookies and sends them to an external destination.",
+      "expected_technique_ids": [
+        "T1539"
+      ]
+    },
+    {
+      "id": "pos2_009",
+      "category": "positive",
+      "text": "A process modifies Windows Defender settings to disable real-time protection without authorization.",
+      "expected_technique_ids": [
+        "T1685"
+      ]
+    },
+    {
+      "id": "pos2_010",
+      "category": "positive",
+      "text": "A process deletes local Windows event logs to remove records of its earlier activity.",
+      "expected_technique_ids": [
+        "T1685.005"
+      ]
+    },
+    {
+      "id": "benign2_001",
+      "category": "benign",
+      "text": "An approved help-desk script runs whoami and hostname to record the computer and account in an asset inventory.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_002",
+      "category": "benign",
+      "text": "An IT administrator uses ipconfig to troubleshoot a user's network connectivity.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_003",
+      "category": "benign",
+      "text": "The approved endpoint security console checks antivirus installation and protection status across managed computers.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_004",
+      "category": "benign",
+      "text": "A system monitoring agent periodically enumerates running processes to report resource consumption.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_005",
+      "category": "benign",
+      "text": "A backup indexer lists files and directories to determine which documents require backup.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_006",
+      "category": "benign",
+      "text": "An authorized software deployment platform installs and starts a Windows service on a managed workstation.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_007",
+      "category": "benign",
+      "text": "An administrator downloads a signed software update from the vendor's official server and verifies its signature before installation.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_008",
+      "category": "benign",
+      "text": "A user signs in to an approved browser application, which stores session cookies for normal use.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_009",
+      "category": "benign",
+      "text": "An authorized security administrator temporarily changes antivirus settings during a documented maintenance procedure and restores protection afterward.",
+      "expected_technique_ids": []
+    },
+    {
+      "id": "benign2_010",
+      "category": "benign",
+      "text": "A Windows event-log retention policy removes old records according to the organization's documented storage policy.",
+      "expected_technique_ids": []
+    }
+  ]
+}

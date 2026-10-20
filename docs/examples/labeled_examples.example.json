@@ -1,0 +1,7 @@
+{
+  "_comment": "FORMAT EXAMPLE ONLY. These two rows are illustrative, hand-written by the developer, and are NOT ground truth. Replace with analyst-labelled behaviour narratives before drawing any conclusion about thresholds.",
+  "examples": [
+    {"id": "ex1", "text": "powershell.exe launched with an encoded command line and spawned child processes", "expected_technique_ids": ["T1059.001"]},
+    {"id": "ex2", "text": "routine scheduled disk defragmentation performed by the system", "expected_technique_ids": []}
+  ]
+}

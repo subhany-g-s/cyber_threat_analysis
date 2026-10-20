@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "subhany.pipeline-findings/1.0.0",
+  "title": "subhany.pipeline-findings v1.0.0 (pipeline -> ontology module)",
+  "type": "object",
+  "required": [
+    "contract",
+    "contract_version",
+    "mapping",
+    "records"
+  ],
+  "properties": {
+    "contract": {
+      "const": "subhany.pipeline-findings"
+    },
+    "contract_version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "run": {
+      "type": "object"
+    },
+    "mapping": {
+      "type": "object",
+      "required": [
+        "corpus_version"
+      ],
+      "properties": {
+        "corpus_version": {
+          "type": "string"
+        },
+        "corpus_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attack_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "embedding_model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text_preprocessing": {
+          "type": "string"
+        },
+        "similarity_semantics": {
+          "type": "string"
+        },
+        "is_standin_embedder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_uid",
+          "source_id",
+          "unit_scope"
+        ],
+        "properties": {
+          "event_uid": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "source_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cluster_id": {
+            "type": "integer",
+            "description": "-1 = HDBSCAN noise"
+          },
+          "unit_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit_scope": {
+            "enum": [
+              "cluster",
+              "noise_group",
+              "noise_event",
+              "unreviewed_noise"
+            ]
+          },
+          "novelty": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "behavior_summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "technique_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "technique_id",
+                "similarity_score"
+              ],
+              "properties": {
+                "technique_id": {
+                  "type": "string"
+                },
+                "similarity_score": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "cosine similarity - NOT a probability"
+                }
+              }
+            }
+          },
+          "supporting_event_uids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

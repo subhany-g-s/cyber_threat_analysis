@@ -1,0 +1,69 @@
+{
+  "contract": "subhany.ontology-entities",
+  "contract_version": "1.0.0",
+  "_comment": "EXAMPLE of the contract shape only. Entity types / relationship types / URIs below are placeholders invented for this example; the real ontology module defines its own.",
+  "producer": {
+    "name": "example-ontology-module",
+    "version": "0.0.0"
+  },
+  "entities": [
+    {
+      "entity_id": "ent-1",
+      "entity_type": "ExampleIndicator",
+      "canonical_name": "example address",
+      "ontology_uri": "urn:example:indicator/1",
+      "identifiers": [
+        {
+          "scheme": "ip_address",
+          "value": "203.0.113.7"
+        }
+      ],
+      "source_id": "doc:example-report-1",
+      "status": "observed",
+      "confidence": {
+        "value": 0.8,
+        "method": "example extraction score",
+        "calibrated": false
+      },
+      "evidence": [
+        {
+          "text": "quoted sentence from the source document"
+        }
+      ]
+    },
+    {
+      "entity_id": "ent-2",
+      "entity_type": "ExampleActivity",
+      "canonical_name": "example activity",
+      "source_id": "doc:example-report-1",
+      "status": "inferred",
+      "confidence": {
+        "value": 0.5,
+        "method": "example linking heuristic"
+      },
+      "evidence": [
+        {
+          "reference": "example-report-1 p.3"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "source_entity_id": "ent-2",
+      "target_entity_id": "ent-1",
+      "relationship_type": "example_uses",
+      "source_id": "doc:example-report-1",
+      "status": "inferred",
+      "confidence": {
+        "value": 0.5,
+        "method": "example linking heuristic"
+      },
+      "evidence": [
+        {
+          "text": "activity used the address"
+        }
+      ]
+    }
+  ]
+}

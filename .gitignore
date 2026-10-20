@@ -1,0 +1,32 @@
+# environments / caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# generated run outputs (keep the folder, not its contents)
+outputs/*
+!outputs/.gitkeep
+!outputs/archive/
+outputs/archive/*
+!outputs/archive/README.md
+
+# NOT ignored on purpose: models/ (pretrained GAE), cache/ (ATT&CK corpus + embeddings), data/, config/, docs/, tests/
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Local uploads and caches
+data/dashboard_uploads/
+cache/
+.pytest_cache/
+
+# Backup files
+*.bak
+
+# Local tests that may contain credentials or test-specific data
+test_llm_one_finding.py

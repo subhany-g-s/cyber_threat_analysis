@@ -1,0 +1,15 @@
+{
+  "_comment": "Provisional evaluation cases. Analyst review is required before treating these labels as ground truth.",
+  "examples": [
+    {
+      "id": "positive_powershell",
+      "text": "powershell.exe launched with an encoded command line and spawned child processes",
+      "expected_technique_ids": ["T1059.001"]
+    },
+    {
+      "id": "negative_routine_maintenance",
+      "text": "Routine scheduled disk defragmentation performed by the system",
+      "expected_technique_ids": []
+    }
+  ]
+}

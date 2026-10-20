@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "subhany.ontology-entities/1.0.0",
+  "title": "subhany.ontology-entities v1.0.0 (ontology module -> pipeline)",
+  "description": "entity_type, relationship_type and ontology_uri are opaque strings owned by the ontology module; no classes are defined here.",
+  "type": "object",
+  "required": [
+    "contract",
+    "contract_version",
+    "producer",
+    "entities"
+  ],
+  "properties": {
+    "contract": {
+      "const": "subhany.ontology-entities"
+    },
+    "contract_version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "producer": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "entity_type",
+          "canonical_name",
+          "source_id",
+          "status"
+        ],
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonical_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ontology_uri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "scheme",
+                "value"
+              ],
+              "properties": {
+                "scheme": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "strong schemes used for linking: event_uid, ip_address, file_sha256, file_sha1, file_md5, process_guid"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "observed",
+              "inferred"
+            ]
+          },
+          "confidence": {
+            "type": "object",
+            "required": [
+              "value",
+              "method"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "method": {
+                "type": "string",
+                "minLength": 1,
+                "description": "defines what 'value' means"
+              },
+              "calibrated": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "anyOf": [
+                {
+                  "required": [
+                    "text"
+                  ]
+                },
+                {
+                  "required": [
+                    "reference"
+                  ]
+                },
+                {
+                  "required": [
+                    "event_uid"
+                  ]
+                }
+              ],
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "reference": {
+                  "type": "string"
+                },
+                "event_uid": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_entity_id",
+          "target_entity_id",
+          "relationship_type",
+          "source_id",
+          "status"
+        ],
+        "properties": {
+          "source_entity_id": {
+            "type": "string"
+          },
+          "target_entity_id": {
+            "type": "string"
+          },
+          "relationship_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "observed",
+              "inferred"
+            ]
+          },
+          "confidence": {
+            "type": "object",
+            "required": [
+              "value",
+              "method"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "method": {
+                "type": "string",
+                "minLength": 1,
+                "description": "defines what 'value' means"
+              },
+              "calibrated": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "anyOf": [
+                {
+                  "required": [
+                    "text"
+                  ]
+                },
+                {
+                  "required": [
+                    "reference"
+                  ]
+                },
+                {
+                  "required": [
+                    "event_uid"
+                  ]
+                }
+              ],
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "reference": {
+                  "type": "string"
+                },
+                "event_uid": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
