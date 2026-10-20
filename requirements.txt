@@ -7,7 +7,8 @@ torch-geometric>=2.5
 sentence-transformers>=2.2 # production embedder; downloads its model on first use
 pytest>=7.0
 pandas
-streamlit                # tests
+streamlit         
+google-genai    # tests
 
 # Optional (not needed for local mode):
 #   neo4j>=5.0   -> only for --neo4j
